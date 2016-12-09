@@ -1,0 +1,70 @@
+dnsdock:
+    image: tonistiigi/dnsdock
+    hostname: dnsdock
+    restart: always
+    ports:
+        #   - 8080:80
+        - 172.17.0.1:53:53/udp
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+   
+logic:
+    build: logic/
+    links:
+        - profiling
+        - positioning
+    dns:
+        - 172.17.0.1
+    ports:
+        - 8082:8082
+    environment:
+        - DNSDOCK_ALIAS=logic.docker
+    
+positioning:
+    build: positioning/
+    links:
+        - logic
+        - profiling
+    dns:
+        - 172.17.0.1
+    ports:
+        - 8081:8081
+    environment:
+        - DNSDOCK_ALIAS=positioning.docker
+        
+profiling:
+    build: profiling/
+    links:
+        - logic
+        - positioning
+    dns:
+        - 172.17.0.1
+    ports:
+        - 8080:8080
+    environment:
+        - DNSDOCK_ALIAS=profiling.docker
+        
+sipsimple:
+    build: sipsimple/
+    links:
+        - logic
+    dns:
+        - 172.17.0.1
+    ports:
+        - 9090:9090
+    environment:
+        - DNSDOCK_ALIAS=sipsimple.docker
+proxy:
+    build: proxy/
+    links:
+        - logic
+        - positioning
+        - profiling
+        - sipsimple
+    dns: 
+        - 172.17.0.1
+    ports:
+        -80:80
+    environment:
+        - DNSDOCK_ALIAS=proxy.docker
+        
