@@ -1,9 +1,8 @@
-FROM debian:jessie
+FROM ubuntu:14.04
 
-MAINTAINER Fábio Uechi <fabio.uechi@gmail.com>
+RUN apt-get purge -y python.*
 
-RUN apt-get update && \
-    apt-get install -y wget curl python
+RUN apt-get update && apt-get install -y python curl wget
 
 RUN set -x \
 	&& curl -SL 'https://bootstrap.pypa.io/get-pip.py' | python2 \
@@ -11,9 +10,9 @@ RUN set -x \
 
 RUN wget http://download.ag-projects.com/agp-debian-gpg.key -P /tmp/ && \
     apt-key add /tmp/agp-debian-gpg.key && \
-	echo "deb    http://ag-projects.com/debian stable main" | tee -a /etc/apt/sources.list.d/ag-projects.list    
+	echo "deb    http://ag-projects.com/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/ag-projects.list    
 
 RUN apt-get update && \
-    apt-get install -y python-sipsimple sipclients
+	apt-get install -y python-sipsimple sipclients
 
 CMD ["/bin/bash"] 
