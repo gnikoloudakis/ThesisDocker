@@ -11,8 +11,8 @@ dnsdock:
 logic:
     build: logic/
     links:
-        - profiling
-        - positioning
+#        - profiling
+#        - positioning
     dns:
         - 172.17.0.1
     ports:
@@ -35,8 +35,8 @@ positioning:
 profiling:
     build: profiling/
     links:
-        - logic
-        - positioning
+#        - logic
+#        - positioning
     dns:
         - 172.17.0.1
     ports:
@@ -47,7 +47,7 @@ profiling:
 sipsimple:
     build: sipsimple/
     links:
-        - logic
+#        - logic
     dns:
         - 172.17.0.1
     ports:
