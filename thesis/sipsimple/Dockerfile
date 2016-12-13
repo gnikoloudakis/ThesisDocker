@@ -1,10 +1,12 @@
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 
 MAINTAINER Fábio Uechi <fabio.uechi@gmail.com>
 
 RUN apt-get purge -y python.*
 
-RUN apt-get update && apt-get install -y python curl wget git
+RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+
+RUN apt-get update && apt-get install -y python python-setuptools curl wget git
 
 RUN set -x \
 	&& curl -SL 'https://bootstrap.pypa.io/get-pip.py' | python2 \
