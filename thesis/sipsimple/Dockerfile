@@ -1,5 +1,6 @@
 FROM fabito/sipsimple
 
+RUN sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y python-pip git
 RUN sudo pip install --upgrade pip
 
 RUN sudo git clone https://github.com/gnikoloudakis/sip_proxy.git
@@ -10,6 +11,6 @@ WORKDIR /sip_proxy
 
 EXPOSE 5000:5000
 
-ENTRYPOINT [ "python2" ]
+ENTRYPOINT [ "python" ]
 
 CMD [ "sip_proxy.py" ]
