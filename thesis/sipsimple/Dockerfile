@@ -9,7 +9,7 @@ RUN sudo pip install -r sip_proxy/requirements.txt
 
 WORKDIR /sip_proxy
 
-EXPOSE 5000:5000
+EXPOSE 9090:9090
 
 ENTRYPOINT [ "python" ]
 
