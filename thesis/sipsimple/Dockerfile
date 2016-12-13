@@ -1,31 +1,10 @@
-FROM ubuntu:14.04
+FROM fabito/sipsimple
 
-MAINTAINER Fábio Uechi <fabio.uechi@gmail.com>
+RUN sudo pip install --upgrade pip
 
-RUN apt-get purge -y python.*
+RUN sudo git clone https://github.com/gnikoloudakis/sip_proxy.git
 
-RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
-
-RUN apt-get update && apt-get install -y python python-setuptools curl wget git
-
-RUN set -x \
-	&& curl -SL 'https://bootstrap.pypa.io/get-pip.py' | python2 \
-    && pip install --no-cache-dir virtualenv
-
-RUN wget http://download.ag-projects.com/agp-debian-gpg.key -P /tmp/ && \
-    apt-key add /tmp/agp-debian-gpg.key && \
-	echo "deb    http://ag-projects.com/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/ag-projects.list    
-
-RUN apt-get update && \
-	apt-get install -y python-sipsimple sipclients
-
-#CMD ["/bin/bash"] 
-
-RUN pip install --upgrade pip
-
-RUN git clone https://github.com/gnikoloudakis/sip_proxy.git
-
-RUN pip install -r sip_proxy/requirements.txt
+RUN sudo pip install -r sip_proxy/requirements.txt
 
 WORKDIR /sip_proxy
 
