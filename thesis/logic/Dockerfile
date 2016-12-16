@@ -2,7 +2,7 @@
 FROM python
 MAINTAINER Yannis <yannis@example.com>
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git python-dev
 
 RUN pip install --upgrade pip
 
