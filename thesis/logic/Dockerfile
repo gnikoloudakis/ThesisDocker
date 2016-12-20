@@ -2,7 +2,7 @@
 FROM python
 MAINTAINER Yannis <yannis@example.com>
 
-RUN apt-get update && apt-get install -y git python-dev
+RUN apt-get update && apt-get install -y git python-dev openssh-server
 
 RUN pip install --upgrade pip
 
