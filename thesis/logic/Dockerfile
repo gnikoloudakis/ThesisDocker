@@ -7,12 +7,12 @@ RUN apt-get update && apt-get install -y git python-dev openssh-server
 
 RUN apt-get update && apt-get install -y git build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev
 ##################################  ssh setup #############################
-RUN mkdir /var/run/sshd
-RUN echo 'root:password' | chpasswd
-RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+#RUN mkdir /var/run/sshd
+#RUN echo 'root:password' | chpasswd
+#RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+#RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 #############################################################################
 
 RUN pip install --upgrade pip
