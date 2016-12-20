@@ -17,6 +17,7 @@ RUN pip install -r ThesisAPELE/service_logic/requirements.txt
 WORKDIR /ThesisAPELE/service_logic/
 
 EXPOSE 8082:8082
+EXPOSE 22:22
 
 ENTRYPOINT [ "python" ]
 
