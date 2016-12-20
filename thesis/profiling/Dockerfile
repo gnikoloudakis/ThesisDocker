@@ -1,9 +1,13 @@
 #FROM sgoblin/python3.5
-FROM python
+FROM lmurawsk/python2.7
 
 MAINTAINER Yannis <yannis@example.com>
 
+<<<<<<< HEAD
 RUN apt-get update && apt-get install -y git python-dev openssh-server
+=======
+RUN apt-get update && apt-get install -y git build-essential autoconf libtool pkg-config python-opengl python-imaging python-pyrex python-pyside.qtopengl idle-python2.7 qt4-dev-tools qt4-designer libqtgui4 libqtcore4 libqt4-xml libqt4-test libqt4-script libqt4-network libqt4-dbus python-qt4 python-qt4-gl libgle3 python-dev
+>>>>>>> 46f2d0623c120e83da13e8c124ea6cc06177acad
 
 RUN git clone https://github.com/gnikoloudakis/ThesisAPELE.git
 

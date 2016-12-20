@@ -57,10 +57,10 @@ sipsimple:
 proxy:
     build: proxy/
     links:
-#        - logic
-#        - positioning
+        - logic
+        - positioning
         - profiling
-#        - sipsimple
+        - sipsimple
     dns: 
         - 172.17.0.1
     ports:
