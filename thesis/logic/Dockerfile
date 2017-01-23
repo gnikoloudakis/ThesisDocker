@@ -1,7 +1,7 @@
 #FROM sgoblin/python3.5
 FROM lmurawsk/python2.7
 MAINTAINER Yannis <yannis@example.com>
-
+ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update && apt-get install -y git python-dev openssh-server
 
